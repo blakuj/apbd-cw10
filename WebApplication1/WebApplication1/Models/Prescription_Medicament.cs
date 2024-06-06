@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Models;
 
 
 [Table(nameof(Prescription_Medicament))]
+[PrimaryKey(nameof(IdPrescription),nameof(IdMedicament))]
 public class Prescription_Medicament
 {
    

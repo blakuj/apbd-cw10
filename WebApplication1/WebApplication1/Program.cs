@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Context;
+using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>(
     options => options.UseSqlServer("Name=ConnectionStrings:Default"));
-
+builder.Services.AddScoped<PrescriptionService>();
+builder.Services.AddScoped<PatientService>();
+builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,7 +25,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-
+app.MapControllers();
 
 app.Run();
 
